@@ -3,8 +3,13 @@ class Logger
     @f = File.open 'log.txt', 'a'
   end
 
+  @@x = nil
+
   def self.instance
-    puts "OK"
+    if @@x == nil
+      @@x = Logger.new
+    end
+    return @@x
   end
 
 # cless method
@@ -19,7 +24,8 @@ class Logger
 end
 
 Logger.say_something
-Logger.instance
+Logger.instance.log_something 'Hello there'
+Logger.instance.log_something 'Hello everyone'
 
 logger = Logger.new
 logger.log_something 'Wazzzzup'
